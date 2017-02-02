@@ -8,9 +8,19 @@ Grafana.
 
 If you dont have a Grafana InfluxDB instanlled somewhere, you will need one to collect the data.
 
-    On Ubuntu
-
+    # On Ubuntu
     apt-get install influxdb grafana-data grafana
+    
+    
+    
+    # On OSX with brew installed
+    brew install influxdb
+    # edit /usr/local/etc/influxdb.conf to enable the admin UI for influx DB
+    brew services start influxdb
+    brew install grafana
+    brew services start grafana
+    
+    
 
 Then go to http://localhost:8083  create a database (eg metrics) and a user in that database (eg aemuser) with password
 Then go to http://localhost:3000 login with admin admin, set the admin passwor and connect Grafana to the InfluxDB instnace (add a datasource)
