@@ -23,7 +23,7 @@ Install the bundle, configure the bundle (see below) and use.
 
 ## host (default: 127.0.0.1)
 
-The host where InfluxDB is running
+The host where InfluxDB is running.
 
 ## port (default: 8086)
 
