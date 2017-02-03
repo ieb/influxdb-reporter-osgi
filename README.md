@@ -2,7 +2,7 @@ This provides a OSGi bundle that has a component shipping Dropwizard metrics out
 Grafana.
 
 
-[![Build Status](https://travis-ci.org/ieb/influx-reporter-osgi.svg?branch=master)](https://travis-ci.org/ieb/influx-reporter-osgi)
+[![Build Status](https://travis-ci.org/ieb/influxdb-reporter-osgi.svg?branch=master)](https://travis-ci.org/ieb/influxdb-reporter-osgi)
 
 # Quick Setup for the impatient
 
