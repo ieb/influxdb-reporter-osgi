@@ -73,7 +73,7 @@ public class CodehaleMetricsReporterComponent {
 
     @Activate
     public void acivate(Map<String, Object> properties) throws IOException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        LOG.info("Starting Ganglia Metrics ");
+        LOG.info("Starting InfluxDB Metrics reporter ");
         String server = (String) properties.get(INFLUXDB_SERVER);
         int port = (int) properties.get(INFLUXDB_PORT);
         boolean secure = (boolean) properties.get(INFLUXDB_SECURE_TRANSPORT);
@@ -100,6 +100,9 @@ public class CodehaleMetricsReporterComponent {
 
     protected void bindMetricRegistry(MetricRegistry metricRegistry, Map<String, Object> properties) {
         String name = (String) properties.get("name");
+        if (name == null) {
+            name = metricRegistry.toString();
+        }
         CopyMetricRegistryListener listener = new CopyMetricRegistryListener(this.metricRegistry, name);
         listener.start(metricRegistry);
         this.listeners.put(name, listener);
