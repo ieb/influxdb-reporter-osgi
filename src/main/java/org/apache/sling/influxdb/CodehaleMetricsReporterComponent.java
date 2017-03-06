@@ -110,6 +110,9 @@ public class CodehaleMetricsReporterComponent {
     }
     protected void unbindMetricRegistry(MetricRegistry metricRegistry, Map<String, Object> properties) {
         String name = (String) properties.get("name");
+        if (name == null) {
+            name = metricRegistry.toString();
+        }
         CopyMetricRegistryListener metricRegistryListener = listeners.get(name);
         if ( metricRegistryListener != null) {
             metricRegistryListener.stop(metricRegistry);
