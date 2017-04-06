@@ -59,4 +59,14 @@ The name of the Influx DB
 
 
 
+# InfluxDB and Grafana as Docker containers
 
+
+    docker run --rm influxdb influxd config > influxdb.conf
+    # edit the influxdb file to your liking, then start and instance mapping the DB to /var/lib/influxdb
+    docker run -p 8086:8086  -p 8083:8083     -v /root/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro -v /var/lib/influxdb:/var/lib/influxdb influxdb -config /etc/influxdb/influxdb.conf
+    docker run -d  -p 3000:3000 grafana/grafana
+    
+Then configure influxdb as before using the public IP. Grafana will also connect over the public IP, authenticated. 
+It will be advisable to filter by IP on the Grafana and InfluxDB instances. The InfluxDB can run over https. ie, secure
+the endpoints.

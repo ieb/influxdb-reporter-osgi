@@ -59,6 +59,8 @@ public class CodehaleMetricsReporterComponent {
     public static final String INFLUXDB_SERVER = "host";
     @Property(intValue = 8086, description = "The port of the influx db server")
     public static final String INFLUXDB_PORT = "port";
+    @Property(intValue = 5, description = "The period in seconds the reporter reports at")
+    public static final String REPORT_PERIOD = "period";
     @Property(boolValue = false, description = "If true, user https, otherwise use http")
     public static final String INFLUXDB_SECURE_TRANSPORT = "secure";
     @Property(value = "", description = "The Username for the influx DB server.")
@@ -76,6 +78,7 @@ public class CodehaleMetricsReporterComponent {
         LOG.info("Starting InfluxDB Metrics reporter ");
         String server = (String) properties.get(INFLUXDB_SERVER);
         int port = (int) properties.get(INFLUXDB_PORT);
+        int period = (int) properties.get(REPORT_PERIOD);
         boolean secure = (boolean) properties.get(INFLUXDB_SECURE_TRANSPORT);
         String username = (String) properties.get(INFLUXDB_USERNAME);
         String password = (String) properties.get(INFLUXDB_PASSWORD);
@@ -88,7 +91,7 @@ public class CodehaleMetricsReporterComponent {
                 .tag("client", "OurImportantClient")
                 .tag("server", getHostName())
                 .build();
-        reporter.start(5, TimeUnit.SECONDS);
+        reporter.start(period, TimeUnit.SECONDS);
         LOG.info("Started InfluxDB Metrics reporter to {}://{}:{} username:{} password:**** {} ", new Object[]{secure ? "https" : "http", server, port, username, db});
     }
 
